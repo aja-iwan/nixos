@@ -31,6 +31,7 @@
     #kdePackages.kdenlive
     #ffmpeg-full
     #frei0r
+    wl-clipboard
     gnome-tweaks
     tree-sitter
     ripgrep
@@ -41,9 +42,22 @@
   # Packages Program.
   programs.zsh.enable = true;
   programs.firefox.enable = false;
+  virtualisation.waydroid = {
+    enable = true;
+    package = pkgs.waydroid-nftables;
+  };
+  
 
   # Packages Font.
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
+  
+  # Settings.
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [ "kitty.desktop" ];
+    };
+  };
 }
