@@ -203,7 +203,7 @@ binds {
     Mod+Shift+R { switch-preset-column-width-back; }
 
     Mod+F { maximize-column; }
-    Mod+Ctrl+F { fullscreen-window; }
+    Mod+Shift+F { fullscreen-window; }
 
     Mod+V       { toggle-window-floating; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
