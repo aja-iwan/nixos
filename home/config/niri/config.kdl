@@ -11,7 +11,7 @@ input {
 
         repeat-delay 300
         repeat-rate 30
-        numlock
+        //numlock
     }
 
     touchpad {
@@ -28,7 +28,7 @@ input {
     }
 
     trackpoint {
-        // off
+        //off
     }
 
     focus-follows-mouse //max-scroll-amount="0%"
@@ -89,7 +89,7 @@ layout {
 spawn-at-startup "noctalia"
 
 hotkey-overlay {
-    // skip-at-startup
+    //skip-at-startup
 }
 
 prefer-no-csd
@@ -97,7 +97,7 @@ prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 animations {
-    // off
+    //off
 }
 
 window-rule {
@@ -133,7 +133,9 @@ debug {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Return hotkey-overlay-title="kitty" { spawn "kitty"; }
+    Mod+Return hotkey-overlay-title="terminal" { spawn "kitty"; }
+    Mod+E hotkey-overlay-title="files" { spawn "nautilus"; }
+    Mod+B hotkey-overlay-title="browser" { spawn "librewolf"; }
     Mod+Space hotkey-overlay-title="launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+Comma hotkey-overlay-title="settings" { spawn-sh "noctalia msg settings-toggle"; }
     Super+Alt+L hotkey-overlay-title="lock" { spawn-sh "noctalia msg session lock"; }
@@ -172,8 +174,11 @@ binds {
     Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
 
-    Mod+Shift+Page_Down { move-workspace-down; }
-    Mod+Shift+Page_Up   { move-workspace-up; }
+    Mod+Page_Down { move-workspace-down; }
+    Mod+Page_Up   { move-workspace-up; }
+
+    Mod+WheelScrollDown cooldown-ms=100 { focus-workspace-down; }
+    Mod+WheelScrollUp   cooldown-ms=100 { focus-workspace-up; }
 
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
@@ -217,3 +222,5 @@ cursor {
     xcursor-size 24
 }
 
+
+include "noctalia.kdl"

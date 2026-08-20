@@ -22,7 +22,7 @@
 
   # Packages System.
   environment.systemPackages = with pkgs; [
-    librewolf
+    brave
     neovim
     yazi
     kitty
