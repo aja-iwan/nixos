@@ -44,7 +44,7 @@
   services.printing.enable = true;
 
   nix.settings = {
-    http-connections = 128;
-    max-substitution-jobs = 128;
+    http-connections = 32;
+    max-substitution-jobs = 32;
   };
 }

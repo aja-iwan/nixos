@@ -5,7 +5,7 @@
   users.users."iwan" = {
     isNormalUser = true;
     description = "iwan";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
       gcc 
@@ -26,8 +26,12 @@
     neovim
     yazi
     kitty
+    android-studio
+    android-tools
+    vscode.fhs
+    jdk17
+    kotlin
     #python3
-    #vscode.fhs
     #kdePackages.kdenlive
     #ffmpeg-full
     #frei0r
@@ -40,6 +44,7 @@
   ];
   
   # Packages Program.
+  programs.nix-ld.enable = true;
   programs.zsh.enable = true;
   programs.firefox.enable = false;
   virtualisation.waydroid = {

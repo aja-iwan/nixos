@@ -5,7 +5,7 @@
     [
       ./modules/hardware.nix
       ./modules/programs.nix
-      ./modules/system.nix
+      ./modules/systems.nix
       ./features/niri.nix
       #./features/hyprland.nix
     ];

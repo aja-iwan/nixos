@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./config/config.nix
+  ];
+
   home.username = "iwan";
   home.homeDirectory = "/home/iwan";
   home.stateVersion = "26.05"; 
@@ -13,8 +17,8 @@
     shellAliases = {
       rebuild = "sudo nixos-rebuild switch --flake .#nixos";
       garbage = "sudo nix-collect-garbage -d";
-      ls = "ls -a";
-      ll = "ls -la";
+      ls = "ls -a --color=auto";
+      ll = "ls -lah --color=auto";
       mkdir = "mkdir -pv";
       n = "nvim";
       c = "clear";
@@ -29,29 +33,13 @@
     };
     
     initContent = ''
-      function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	command yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d ''''\'''' cwd < "$tmp"
-	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-	command rm -f -- "$tmp"
-      }
+    function y() {
+        local tmp cwd; tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+        command yazi "$@" --cwd-file="$tmp"
+        IFS= read -r -d ' ' cwd < "$tmp"
+        [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
+        command rm -f -- "$tmp"
+    }
     '';
-  };
-  
-  xdg.configFile."kitty" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/config/kitty";
-  };
-  
-  xdg.configFile."yazi" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/config/yazi";
-  };
-  
-  xdg.configFile."nvim" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/config/nvim";
-  };
-
-  xdg.configFile."niri" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/config/niri";
   };
 }
